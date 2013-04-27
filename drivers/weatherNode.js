@@ -6,14 +6,14 @@ module.exports = {
         tempi: {
             title: 'Temperature indoor',
             unit: '°C',
-            scale: 1,
+            scale: 0,
             min: -50,
             max: 50
         },
         tempo: {
             title: 'Temperature outdoor',
             unit: '°C',
-            scale: 1,
+            scale: 0,
             min: -50,
             max: 50
         },
@@ -34,12 +34,16 @@ module.exports = {
     feed: 'rf12.packet',
 
     decode: function (raw, callback) {
+        ti = raw.readInt16LE(1) / 10.0;
+        to = raw.readInt16LE(3) / 16.0;
+        p = raw.readInt32LE(5) / 100.0;
+        lb = raw[9] & 1;
         callback({
-            tempi: raw.readFloatLE(0),
-            tempo: raw.readFloatLE(4),
-            press: raw.readFloatLE(8),
-            lobat: raw[12]
+            tempi: ti,
+            tempo: to,
+            press: p,
+            lobat: lb
         });
     }
-    
+
 };
