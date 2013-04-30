@@ -22,7 +22,7 @@ setup = ->
       point.stream = new cosm.Datastream(client, cosmmap[point.feed].cosmfeed, {id: point.id})
 
 sendData = (obj, oldObj) ->
-  if obj and cosmmap.datastreams[obj.name]?
+  if obj and cosmmap.datastreams[obj.origin]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name
     console.log cosmmap.datastreams
     cosmmap.datastream[obj.origin][obj.name]?.stream.addPoint obj.value
