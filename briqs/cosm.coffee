@@ -8,19 +8,22 @@ exports.info =
 # TODO: Add mapping between cosm feeds/datastreams and NodeMap
 
 state = require '../server/state'
+cosmmap = require './cosmMap-local'
 cosm = require 'cosm'
-client = new cosm.Cosm('insert API key here')
-feed = new cosm.Feed(cosm, {id: 12345})
-stream = new cosm.Datastream(client, feed, {id: 1})
+client = new cosm.Cosm(cosmmap.apikey)
+#feed = new cosm.Feed(cosm, {id: 12345})
+#stream = new cosm.Datastream(client, feed, {id: 1})
+
+setup = ->
+  for feed in cosmmap.feeds
+    feed.cosmfeed = new cosm.Feed(cosm, {id: feed.id})
+  for stream in cosmmap.datastreams
+    for point in stream
+      point.stream = new cosm.Datastream(client, cosmmap[point.feed].cosmfeed, {id: point.id})
 
 sendData = (obj, oldObj) ->
   if obj
-    console.log 'cosm'
-    console.log obj
-  ###
-  stream.addPoint 1.234
-  stream.addPoint 2.345, new Date(2012, 11, 11, 11, 11)
-  ###
+    cosmmap.datastream[obj.origin][obj.name]?.stream.addPoint obj.value
 
 exports.factory = class
   constructor: ->
