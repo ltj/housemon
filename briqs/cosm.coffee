@@ -30,11 +30,7 @@ sendData = (obj, oldObj) ->
     console.log feeds
     console.log streams
     stream = streams[obj.origin][obj.name]
-    stream?.addPoint 
-      obj.value 
-      undefined
-      -> 
-        console.log 'point added'
+    stream?.addPoint obj.value undefined () -> console.log 'point added'
 
 exports.factory = class
   constructor: ->
