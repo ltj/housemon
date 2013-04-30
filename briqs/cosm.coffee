@@ -25,11 +25,10 @@ setup = ->
       streams[origin][name] ?= new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
 
 sendData = (obj, oldObj) ->
-  if obj and cosmmap.datastreams[obj.origin]?
+  if obj and streams[obj.origin][obj.name]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name
     console.log feeds
     console.log streams
-    feed = new cosm.Feed(cosm, {id: 12345})
     streams[obj.origin][obj.name]?.addPoint obj.value
 
 exports.factory = class
