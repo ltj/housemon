@@ -29,11 +29,12 @@ callback = ->
 
 sendData = (obj, oldObj) ->
   if obj and streams[obj.origin]?
-    console.log 'cosm ' + obj.origin + ' ' + obj.name
-    console.log feeds
-    console.log streams
-    stream = streams[obj.origin][obj.name]
-    stream?.addPoint obj.value undefined callback()
+    console.log 'cosm ' + obj.origin + ' ' + obj.name + ' ' + obj.value
+    console.log 'feeds ' + feeds
+    console.log 'streams' + streams
+    console.log 'cosm stream ' + streams[obj.origin[obj.name]]
+    stream = streams[obj.origin[obj.name]]
+    stream.addPoint obj.value
 
 exports.factory = class
   constructor: ->
