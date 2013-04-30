@@ -27,9 +27,9 @@ sendData = (obj, oldObj) ->
   if obj and cosmmap.datastreams[obj.origin]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name
     console.log feeds
-    console.log datastreams
+    console.log streams
     feed = new cosm.Feed(cosm, {id: 12345})
-    datastreams[obj.origin][obj.name]?.stream.addPoint obj.value
+    streams[obj.origin][obj.name]?.stream.addPoint obj.value
 
 exports.factory = class
   constructor: ->
