@@ -23,6 +23,8 @@ setup = ->
 
 sendData = (obj, oldObj) ->
   if obj
+    console.log 'cosm ' + obj.origin + ' ' + obj.name
+    console.log cosmmap.datastreams
     cosmmap.datastream[obj.origin][obj.name]?.stream.addPoint obj.value
 
 exports.factory = class
