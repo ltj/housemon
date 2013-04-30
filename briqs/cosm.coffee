@@ -31,7 +31,7 @@ sendData = (obj, oldObj) ->
     console.log feeds
     console.log streams
     feed = new cosm.Feed(cosm, {id: 12345})
-    streams[obj.origin][obj.name]?.stream.addPoint obj.value
+    streams[obj.origin][obj.name]?.addPoint obj.value
 
 exports.factory = class
   constructor: ->
