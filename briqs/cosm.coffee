@@ -20,9 +20,8 @@ setup = ->
   for id, title of cosmmap.feeds
     feeds[id] ?= new cosm.Feed(cosm, {id: id})
   for origin, names of cosmmap.datastreams
-    streams[origin] ?= {}
     for name, ids of names
-      streams[origin][name] ?= new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
+      streams[origin[name]] ?= new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
 
 callback = ->
   console.log 'point added'
