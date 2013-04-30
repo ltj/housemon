@@ -28,13 +28,14 @@ callback = ->
   console.log 'point added'
 
 sendData = (obj, oldObj) ->
-  if obj and streams[obj.origin[obj.name]]?
+  if obj and streams[obj.origin]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name + ' ' + obj.value
     console.log feeds
     console.log streams
     console.log 'cosm stream ' + streams[obj.origin[obj.name]]
-    stream = streams[obj.origin[obj.name]]
-    stream.addPoint obj.value
+    if obj.name == 'p3'
+      stream = streams[obj.origin[obj.name]]
+      stream.addPoint obj.value
 
 exports.factory = class
   constructor: ->
