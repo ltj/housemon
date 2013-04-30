@@ -20,10 +20,10 @@ setup = ->
   feeds = cosmmap.feeds
   datastreams = cosmmap.datastreams
   for feed in feeds
-    feed.feed = new cosm.Feed(cosm, {id: feed.id})
+    feed['feed'] =? new cosm.Feed(cosm, {id: feed.id})
   for stream in datastreams
     for point in stream
-      point.stream = new cosm.Datastream(client, cosmmap[point.feed].cosmfeed, {id: point.id})
+      point['stream'] =? new cosm.Datastream(client, cosmmap[point.feed].cosmfeed, {id: point.id})
 
 sendData = (obj, oldObj) ->
   if obj and cosmmap.datastreams[obj.origin]?
