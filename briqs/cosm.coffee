@@ -34,6 +34,7 @@ sendData = (obj, oldObj) ->
 
 exports.factory = class
   constructor: ->
+    setup()
     state.on 'set.status', sendData
   destroy: ->
     state.off 'set.status', sendData
