@@ -11,7 +11,8 @@ state = require '../server/state'
 cosmmap = require './cosmMap-local'
 cosm = require 'cosm'
 client = new cosm.Cosm(cosmmap.apikey)
-map = {}
+feeds = {}
+datastreams = {}
 #feed = new cosm.Feed(cosm, {id: 12345})
 #stream = new cosm.Datastream(client, feed, {id: 1})
 
