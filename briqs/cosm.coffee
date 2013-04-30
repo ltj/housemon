@@ -21,8 +21,9 @@ setup = ->
     feeds[id] ?= new cosm.Feed(cosm, {id: id})
   for origin, names of cosmmap.datastreams
     for name, ids of names
-      console.log 'feed ' + feeds[ids.feedid] + ' ' + ids.streamid
-      streams[origin] ?= '#{name}': new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
+      s = {}
+      s[name] = new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
+      streams[origin] ?= s
 
 sendData = (obj, oldObj) ->
   if obj and cosmmap.datastreams[obj.origin]?
