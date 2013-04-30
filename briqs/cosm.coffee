@@ -22,13 +22,14 @@ setup = ->
       point.stream = new cosm.Datastream(client, cosmmap[point.feed].cosmfeed, {id: point.id})
 
 sendData = (obj, oldObj) ->
-  if obj
+  if obj and cosmmap.datastreams[obj.name]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name
     console.log cosmmap.datastreams
     cosmmap.datastream[obj.origin][obj.name]?.stream.addPoint obj.value
 
 exports.factory = class
   constructor: ->
+    setup()
     state.on 'set.status', sendData
   destroy: ->
     state.off 'set.status', sendData
