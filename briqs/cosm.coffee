@@ -22,7 +22,7 @@ setup = ->
   for origin, names of cosmmap.datastreams
     for name, ids of names 
       streams[origin] ?= name
-      console.log 'feedid ' + feeds[ids.feedid]
+      console.log 'feedid ' + ids.feedid + ' ' + feeds[ids.feedid]
       streams[origin][name] = new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
 
 sendData = (obj, oldObj) ->
