@@ -24,13 +24,16 @@ setup = ->
     for name, ids of names
       streams[origin][name] ?= new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
 
+callback = ->
+  console.log 'point added'
+
 sendData = (obj, oldObj) ->
   if obj and streams[obj.origin]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name
     console.log feeds
     console.log streams
     stream = streams[obj.origin][obj.name]
-    stream?.addPoint obj.value undefined () -> console.log 'point added'
+    stream?.addPoint obj.value undefined callback
 
 exports.factory = class
   constructor: ->
