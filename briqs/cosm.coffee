@@ -12,18 +12,17 @@ cosmmap = require './cosmMap-local'
 cosm = require 'cosm'
 client = new cosm.Cosm(cosmmap.apikey)
 feeds = {}
-datastreams = {}
+streams = {}
 #feed = new cosm.Feed(cosm, {id: 12345})
 #stream = new cosm.Datastream(client, feed, {id: 1})
 
 setup = ->
-  feeds = cosmmap.feeds
-  datastreams = cosmmap.datastreams
-  for feed in feeds
-    feed['feed'] ?= new cosm.Feed(cosm, {id: feed.id})
-  for stream in datastreams
-    for point in stream
-      point['stream'] ?= new cosm.Datastream(client, cosmmap[point.feed].cosmfeed, {id: point.id})
+  for id, title of cosmmap.feeds
+    feeds[id] ?= new cosm.Feed(cosm, {id: id})
+  for own origin, names of cosmmap.datastreams
+    streams[origin] ?= origin
+    for own name, set of names
+      streams[origin][name] ?= new cosm.Datastream(client, feeds[set.feedid], {id: set.streamid})
 
 sendData = (obj, oldObj) ->
   if obj and cosmmap.datastreams[obj.origin]?
