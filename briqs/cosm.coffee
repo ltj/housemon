@@ -25,7 +25,7 @@ setup = ->
       streams[origin][name] ?= new cosm.Datastream(client, feeds[ids.feedid], {id: ids.streamid})
 
 sendData = (obj, oldObj) ->
-  if obj and streams[obj.origin][obj.name]?
+  if obj and streams[obj.origin]?
     console.log 'cosm ' + obj.origin + ' ' + obj.name
     console.log feeds
     console.log streams
