@@ -4,6 +4,7 @@
 # version: 2013050101
 #
 # USAGE:
+# Depends on cosm module. Install using 'npm install cosm'
 # Listens for status updates so status briq must be installed.
 # Cosm settings (API key, feeds and datastreams) must be configured
 # separately in briqs/cosmMap-local.coffee.
