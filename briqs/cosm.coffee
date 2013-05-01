@@ -31,7 +31,7 @@ sendData = (obj, oldObj) ->
     console.log 'cosm ' + obj.origin + ' ' + obj.name + ' ' + obj.value
     console.log feeds
     console.log streams
-    console.log 'cosm stream ' + streams[obj.origin[obj.name]]
+    console.log 'cosm stream ' + streams[obj.origin+obj.name]
     streams[obj.origin+obj.name].addPoint obj.value
 
 exports.factory = class
