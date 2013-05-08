@@ -56,7 +56,12 @@ setup = ->
 sendData = (obj, oldObj) ->
   # send datapoint if origin/name has a stream
   if obj and streams[obj.origin+obj.name]?
-    streams[obj.origin+obj.name].addPoint obj.value
+    try
+      streams[obj.origin+obj.name].addPoint obj.value
+    catch e
+      console.error e
+    
+    
 
 exports.factory = class
   constructor: ->
