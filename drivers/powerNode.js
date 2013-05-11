@@ -9,7 +9,7 @@ module.exports = {
             min: 0,
             max: 36000
         },
-        elapsed: {
+        pulse: {
             title: 'Elapsed Wh',
             unit: 'Wh',
             min: 0,
@@ -27,7 +27,7 @@ module.exports = {
     decode: function (raw, callback) {
         callback({
             power: raw.readInt16LE(1),
-            elapsed: raw.readInt16LE(3),
+            pulse: raw.readInt16LE(3),
             lobat: raw[5] & 1
         });
     }
