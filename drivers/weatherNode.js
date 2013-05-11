@@ -13,7 +13,7 @@ module.exports = {
         tempo: {
             title: 'Temperature outdoor',
             unit: '°C',
-            factor: 0.0625,
+            scale: 1,
             min: -50,
             max: 50
         },
@@ -36,7 +36,7 @@ module.exports = {
     decode: function (raw, callback) {
         callback({
             tempi: raw.readInt16LE(1),
-            tempo: raw.readInt16LE(3),
+            tempo: (raw.readInt16LE(3) / 16).toFixed(1) * 10,
             press: raw.readInt32LE(5),
             lobat: raw[9] & 1
         });
