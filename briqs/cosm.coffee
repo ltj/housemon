@@ -41,7 +41,7 @@ exports.info =
 state = require '../server/state'
 cosmmap = require './cosmMap-local'
 cosm = require 'cosm'
-client = new cosm.Cosm(cosmmap.apikey)
+client = new cosm.Cosm(cosmmap.apikey, {server: 'http://216.52.233.120'})
 feeds = {}
 streams = {}
 
